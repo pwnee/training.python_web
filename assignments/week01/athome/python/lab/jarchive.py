@@ -42,4 +42,4 @@ def get_clues(bs):
         print clue_props
 
 #categories = get_categories(bs_html)
-#get_clues(bs_html)
+get_clues(bs_html)

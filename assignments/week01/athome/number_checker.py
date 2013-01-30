@@ -1,8 +1,9 @@
 def get_number():
-	'''Prompts the user to input a number.  Will not be satisfied until a float or an int is passed'''
+	'''Prompts the user to input a number.  Will not be satisfied until a float or an int is passed.'''
 	while True:
 		number = is_float_or_int(raw_input("Please enter a number: "))
 		if not number:
+			print "You did not enter a number.  Please try again."
 			continue
 		else:
 			return number

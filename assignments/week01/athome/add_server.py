@@ -11,23 +11,29 @@ def num (s):
 
 
 # Create a TCP/IP socket
-ess = socket.socket(2,1,0)
+ess = socket.socket(socket.AF_INET,
+					socket.SOCK_STREAM,
+					socket.IPPROTO_IP)
 # Bind the socket to the port
 #server_address = ('127.0.0.1', 50000)
-ess.bind(('67.214.219.123', 50000))
+server_ip = '67.214.219.123'
+ess.bind((server_ip, 50000))
 # Listen for incoming connections
 ess.listen(1)
-while True:
+try:
+	while True:
     # Wait for a connection
-	con, cli = ess.accept()
-	try:
+		con, cli = ess.accept()
+		try:
         # Receive the data and send it back
-		echo = con.recv(64)
-		num1,num2 = echo.split("|",1)
-		sum_of_numbers = num(num1) + num(num2)
-		sum_of_numbers = str(sum_of_numbers)
-		con.sendall(sum_of_numbers)
-
-	finally:
-		# Clean up the connection
-		con.close()
+			echo = con.recv(64)
+			num1,num2 = echo.split("|",1)
+			sum_of_numbers = num(num1) + num(num2)
+			sum_of_numbers = str(sum_of_numbers)
+			con.sendall(sum_of_numbers)
+		finally:
+			con.close()
+			print "Returning sum:", sum_of_numbers
+except KeyboardInterrupt:
+	# Clean up the connection
+	ess.close()
