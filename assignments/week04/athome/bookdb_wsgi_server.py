@@ -2,14 +2,14 @@
 import datetime
 import bookdb
 import pprint
-import StringIO
-import Image
+import cStringIO
+from PIL import Image
 body = """<html>
 <head>
 <title>WSGI Server - BookDB</title>
 </head>
 <body>
-<img border="0" src="http://i.imgur.com/uvN8a5g.png" alt="Books" width="304" height="228">
+<img border="0" src="/images/books.png" alt="Books" width="304" height="228">
 <br>
 <h1>The BookDB</h1></td>
 %s
@@ -29,7 +29,21 @@ def application(environ, start_response):
 	if "id" in path:
 		html = make_html_for_book_info_page(path,database)
 	elif path == "/":
-		html = make_html_for_main_page(titles, ids)	
+		html = make_html_for_main_page(titles, ids)
+	elif "books.png" in path:
+		#TODO: create method to return image--this is really quite ugly
+		f = cStringIO.StringIO()
+		img = Image.open("/home/wilson/Projects/training.python_web/assignments/week04/athome/images/books.png", "r")
+		print img.size
+		img.save(f, "PNG")		
+		f.seek(0)
+		response_body = f.read()
+		print "rb:", response_body
+		status = '200 OK'
+		response_headers = [('Content-Type', 'image/png'),
+						('Content-Length', str(len(response_body)))]
+		start_response(status, response_headers)
+		return [response_body]		
 	else:
 		html = "<h1>We couldn't find what you were looking for.   Sorry.</h1>"
 	response_body = body % (html)
@@ -88,6 +102,7 @@ def make_html_for_book_info_page(path, bookdb):
 	#TODO: there is probably a better way of doing this--similar to how the HTML is created for the main page.  Maybe in a for loop
 	book_id = path[1:]
 	book_id = str(book_id)
+	
 	back_button_html = "<FORM><INPUT Type='"'button'"' VALUE='"'Back'"' onClick='"'history.go(-1);return true;'"'></FORM>"	
 	html = "<p>TITLE: {0}</p>".format(database[book_id]["title"]) + "<p>AUTHOR: {0}</p>".format(database[book_id]["author"]) + "<p>ISBN: {0}</p>".format(database[book_id]["isbn"]) + "<p>PUBLISHER: {0}</p>".format(database[book_id]["publisher"]) + back_button_html
 	return html
