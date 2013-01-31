@@ -39,22 +39,25 @@ def application(environ, start_response):
 '''
 
 def application(environ, start_response):
-    bookdb =  get_bookdb()    
+    bookdb = get_titles()    
     titles = get_title_list(bookdb)
     ids = get_ids(bookdb)
-    if get_path_info(environ) == "/":
+    path = get_path_info(environ)
+    if "id" in path:
+        html = make_html_for_book_info_page(path,database)
+    else:
         html = make_html_for_main_page(titles, ids)
-        response_body = body % (html)
-        status = '200 OK'
-        response_headers = [('Content-Type', 'text/html'),
-                            ('Content-Length', str(len(response_body)))]
-        start_response(status, response_headers)
-        #pp = pprint.PrettyPrinter()
-        #pp.pprint(environ)
-        #print environ    
-        return [response_body]
+    response_body = body % (html)
+    status = '200 OK'
+    response_headers = [('Content-Type', 'text/html'),
+                        ('Content-Length', str(len(response_body)))]
+    start_response(status, response_headers)
+    #pp = pprint.PrettyPrinter()
+    #pp.pprint(environ)
+    #print environ    
+    return [response_body]
 
-def get_bookdb():
+def get_titles():
     return bookdb.BookDB().titles()
 
 def get_title_list(bookdb):
@@ -84,10 +87,8 @@ def make_html_for_main_page(titles, ids):
 def make_html_for_book_info_page(path, bookdb):
     book_id = path[1:]
     book_id = str(book_id)
-    print "book_id: ", book_id
-    print "DB:" , database[book_id]["title"]
-    #for entries in database[book_id]:
-    html = "<li>TITLE: {0}</li>".format(database[book_id]["title"])
+    back_button_html = "<FORM><INPUT Type='"'button'"' VALUE='"'Back'"' onClick='"'history.go(-1);return true;'"'></FORM>"    
+    html = "<li>TITLE: {0}</li>".format(database[book_id]["title"]) + "<li>AUTHOR: {0}</li>".format(database[book_id]["author"]) + "<li>ISBN: {0}</li>".format(database[book_id]["isbn"]) + "<li>PUBLISHER: {0}</li>".format(database[book_id]["publisher"]) + back_button_html
     print html
     return html
     #return "Here is the book information for {0} : {1}".format(id,)
