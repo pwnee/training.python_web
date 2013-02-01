@@ -32,6 +32,7 @@ def application(environ, start_response):
 		html = make_html_for_main_page(titles, ids)
 	elif "books.png" in path:
 		#TODO: create method to return image--this is really quite ugly
+		# Reference for displaying image via WSGI comes from this website.  Accessed 1/31/13: http://lost-theory.org/python/dynamicimg.html
 		f = cStringIO.StringIO()
 		img = Image.open("/home/wilson/Projects/training.python_web/assignments/week04/athome/images/books.png", "r")
 		print img.size
