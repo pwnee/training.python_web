@@ -9,11 +9,10 @@ body = """<html>
 <title>WSGI Server - BookDB</title>
 </head>
 <body>
-<img border="0" src="/images/books.png" alt="Books" width="304" height="228">
-<br>
-<h1>The BookDB</h1></td>
+<h1><img border="0" src="/home/wilson/Projects/training.python_web/assignments/week04/athome/images/books.png" alt="Books" align="middle" width="170" height="151">The BookDB</h1>
 %s
 </body>
+<footer>(c) WTB 2013</footer>
 </html>"""
 
 def application(environ, start_response):
