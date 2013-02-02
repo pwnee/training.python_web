@@ -6,7 +6,7 @@ import bookdb
 ########################################################################################
 #  NOTE: THE SET UP OF THIS SERVER IS BASED ON THE SIMPLE SERVER DESCRIBED ON THIS     #
 #  WEBSITE: http://lucumr.pocoo.org/2007/5/21/getting-started-with-wsgi/ IN PARTICULAR #
-#  THE FUNCTIONS not_found AND application REMAIN UNCHANGED.                            #
+#  THE FUNCTIONS not_found AND application REMAIN UNCHANGED.                           #
 ########################################################################################
 
 def debug_mode(bool):

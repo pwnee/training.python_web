@@ -33,7 +33,13 @@ def make_html_for_book_info_page(path, database):
 		<p>PUBLISHER: publisher</p>		
 		
 	"""
+	html = """<html>
+	<head>
+	<title>Book Info - {0}</title>
+	</head>
+	<h1>WSGI - Book Database</h1>
+	<body>""".format(database[path]["title"])
 
 	back_button_html = "<FORM><INPUT Type='"'button'"' VALUE='"'Back'"' onClick='"'history.go(-1);return true;'"'></FORM>"	
-	html = "<p>TITLE: {0}</p>".format(database[path]["title"]) + "<p>AUTHOR: {0}</p>".format(database[path]["author"]) + "<p>ISBN: {0}</p>".format(database[path]["isbn"]) + "<p>PUBLISHER: {0}</p>".format(database[path]["publisher"]) + back_button_html
+	html = html + "<p>TITLE: {0}</p>".format(database[path]["title"]) + "<p>AUTHOR: {0}</p>".format(database[path]["author"]) + "<p>ISBN: {0}</p>".format(database[path]["isbn"]) + "<p>PUBLISHER: {0}</p>".format(database[path]["publisher"]) + back_button_html
 	return html
