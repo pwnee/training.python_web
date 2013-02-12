@@ -1,6 +1,5 @@
 Chris,
 
-I had hoped to get this up and running in CherryPy this weekend but I didn't have much luck
-One of the issues I ran into was trying to get some sort of db up and running on my windows box.  
-But then I was concerned about that transferring from the windows machine to the VM.  That and it seems like a pain to get databases set up in general on Windows.  I was able to get the hello world for cp up and running, but then when I tried to get my TDD going, I couldn't figure out how to get a db to play nice, nor the syntax for CherryPy when I tried to follow the steps for Flask I got kinda lost.  Not everything translated.
+Sorry for the delay getting this in.  I had spent a few hours Sunday trying to get CherryPy playing nice with some sort of database on my Windows machine, but I couldn't get it going.  I was also concerned with getting that transered from the Windows machine to the VM.  That and it seems like a pain to get databases set up in general on Windows.  I was able to get the hello world for CherryPy up and running, but then when I tried to get my TDD going, I couldn't figure out how to get a db to play nice, nor the syntax for CherryPy when I tried to follow the steps for Flask I got kinda lost.  Not everything translated very well.  I did end up following the lab to get the flaskr example up and running on my VM, you can get to it here:  http://block647040-vrs.blueboxgrid.com/ 
 
+I don't think there are many differences between whats up and running and the lab itself.  If I had gone a different direction I think it may have tried to implement some new features and enhancements.  See you in class.  
