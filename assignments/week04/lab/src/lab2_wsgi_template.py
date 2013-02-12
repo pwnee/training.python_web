@@ -3,7 +3,7 @@ import datetime
 
 body = """<html>
 <head>
-<title>Lab 2 - WSGI experiments</title>
+<title>WSGI Server - BookDB</title>
 </head>
 <body>
 

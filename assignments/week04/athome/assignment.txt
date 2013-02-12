@@ -4,6 +4,7 @@ Using what you've learned this week, Attempt the following:
 * Use ``assignments/week04/athome/bookdb.py`` as a data source
 * Your app index page should list the books in the db
 * Each listing should supply a link to a detail page
+
 * Each detail page should list information about the book
 
 HINT:
