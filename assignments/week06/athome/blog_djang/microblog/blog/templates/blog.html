@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flaskr on Django</title>
+  </head>
+  <body>
+{% if latest_blog_posts %}
+  <h2>Posts</h2>
+  <ul class="entries">
+    {% for entry in latest_blog_posts %}
+     
+      <h2>{{ entry.title }}</h2>
+      <div class="entry_body">
+      {{ entry.post|safe }}
+      </div>
+      <div class="entry_pub_date">
+      {{ entry.pub_date }}
+      </div>
+      <div class="entry_author">
+      {{ entry.author }}
+      </div>
+    {% endfor %}   
+{% else %}
+    <p>No blog posts are available.</p>
+{% endif %}   
+
+
+<form action="/add_entry/" method="post">
+  {% csrf_token %}
+    <div class="post_title">
+     Title: <input type="text" name="title"><br>        
+    </div>
+    <div class ="post_body">
+     Post: <input type = "text" name="post"><br>
+    </div>
+     <p><input type="submit" value="Submit Blog Post" /></p>
+</form>
+</body>
+</html>

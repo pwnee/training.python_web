@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flaskr on Django</title>
+  </head>
+  <body>
+{% if latest_blog_posts %}
+    <ul>
+    {% for entry in latest_blog_posts %}
+        <li><a href="/{{ entry.id }}/">{{ entry.title }}</a></li>
+        <li>{{ entry.post }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blog posts are available.</p>
+{% endif %}   </body>
+</html>
